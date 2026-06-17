@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LOIS AI Prompt</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      background: #f9f9f7;
+      color: #1a1a1a;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 48px;
+      max-width: 480px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+    }
+    h1 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 0 0 8px;
+    }
+    p {
+      font-size: 0.95rem;
+      color: #555;
+      margin: 0 0 32px;
+    }
+    .status {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #2a7a2a;
+      min-height: 1.5em;
+    }
+    .status.error {
+      color: #c0392b;
+    }
+    .copy-btn {
+      display: none;
+      margin-top: 24px;
+      padding: 12px 28px;
+      background: #1a1a1a;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .copy-btn:hover {
+      background: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>LOIS Brand Voice Prompt</h1>
+    <p>The AI writing guide from the LOIS Messaging Playbook (Section 1.5). Paste it at the start of any AI conversation to match the LOIS voice.</p>
+    <div class="status" id="status">Copying to clipboard…</div>
+    <button class="copy-btn" id="copyBtn" onclick="copyToClipboard()">Copy to clipboard</button>
+  </div>
+
+  <script>
+    const prompt = `THE AUDIENCE
+The legal protagonist: lawyers, paralegals, firm operators. People of high intelligence and higher standards. Do not condescend. Do not over-explain. Match them.
+
+THE PHILOSOPHY
+All Rise. The belief that when lawyers have the right intelligence, everyone they serve rises with them. Copy written from this belief is declarative, elevating, and outcome-focused. Copy that ignores it is generic.
+
+THE VOICE IN FOUR WORDS
+- Bright: Sharp thinking, vividly expressed. No filler. No hedging.
+- Fluent: Assured and effortless. Never trying too hard.
+- Precise: Every word earns its place. If you can cut it without losing meaning, cut it.
+- Purposeful: Deliberate, with a hint of idealism. There is a reason behind every sentence.
+
+HOW TO WRITE A SENTENCE
+Lead with outcomes, not features. Show what the firm becomes, before explaining what LOIS does. Short declarative sentences over long compound ones. Active voice always.
+
+BEFORE/AFTER EXAMPLES
+Write like this → Not like this
+"Other AI reads. LOIS runs." → "AI-powered legal solutions to streamline your workflow."
+"Built on 40 million matters. No one else can say that." → "Leverage our industry-leading data foundation."
+"LOIS gives legal minds the room they need to think deeper." → "Best-in-class legaltech platform for modern law firms."
+"The law evolves. So has the intelligence that serves it." → "Disrupting legal with next-generation AI tools!"
+"When lawyers have the clarity to act decisively, justice moves forward." → "Save time and do more with our smart legal assistant."
+"Built from the inside out, by people whose names are on the briefs." → "Built by legal professionals for legal professionals."
+
+WHAT TO AVOID
+- Filler phrases: "leverage," "streamline," "best-in-class," "cutting-edge," "innovative"
+- Passive voice: "is enabled by," "is designed to," "can be used to"
+- Feature-first framing: "LOIS has the ability to..." → write "LOIS does." instead
+- "LOIS by Filevine" as a sign-off or suffix: LOIS stands alone. Filevine is context, not a co-sign.
+- Exclamation points
+- Anything that could describe a different product in a different industry
+- Paraphrasing approved lines: if a line is in the playbook, use it as written. Variations usually miss. "Other AI reads. LOIS runs." is not a starting point for a riff.
+- Bullet points for features: describe what the firm becomes, not what LOIS does. If a list is necessary, make it outcomes, not capabilities.
+- Positioning LOIS as a Filevine add-on: "works inside your Filevine environment," "built into Filevine," and similar constructions make LOIS sound secondary. LOIS stands alone.
+
+THE ONE-LINE TEST
+Before publishing, ask: could this sentence appear in a generic SaaS ad? If yes, rewrite it.`;
+
+    function copyToClipboard() {
+      navigator.clipboard.writeText(prompt).then(() => {
+        document.getElementById('status').className = 'status';
+        document.getElementById('status').textContent = '✓ Copied to clipboard. Go paste it into your AI tool.';
+        document.getElementById('copyBtn').textContent = '✓ Copied!';
+      });
+    }
+
+    navigator.clipboard.writeText(prompt).then(() => {
+      document.getElementById('status').textContent = '✓ Copied to clipboard. Go paste it into your AI tool.';
+    }).catch(() => {
+      document.getElementById('status').className = 'status';
+      document.getElementById('status').textContent = 'Click the button below to copy.';
+      document.getElementById('copyBtn').style.display = 'inline-block';
+    });
+  </script>
+</body>
+</html>
